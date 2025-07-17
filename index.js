@@ -8,7 +8,18 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-let sessions = {}; // sessionId: { list1: [...], list2: [...], matchCount: N }
+let sessions = {
+  "user1@example.com": [
+    "2fc9c1f243cb5bdfc75818d5be798fa6f7f4f151c342bd9dc1f1c7c7a64bba24",
+    "dbe5e25bdf5bc3010861b5e5ce1eaf218effe68b3859c00205f816e1efb46b8d",
+    "3de7e3d7bba75a03d86b13d9493c76e318290da3e4e7a88f4c6633429a204bf0"
+  ],
+  "user2@example.com": [
+    "dbe5e25bdf5bc3010861b5e5ce1eaf218effe68b3859c00205f816e1efb46b8d",
+    "4aa6e3a3bba75a03d86b13d9493c76e318290da3e4e7a88f4c6633429a2abcd1"
+  ]
+};
+ // sessionId: { list1: [...], list2: [...], matchCount: N }
 
 app.post("/session", (req, res) => {
   const { hashes } = req.body;
